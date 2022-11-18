@@ -5,6 +5,14 @@
 
 //Definindo novo tipo de dado "Usuário"
 
+typedef struct DATA {
+    char dia[4];
+    char mes[4];
+    char ano[6];
+}Data;
+
+//Definindo novo tipo de dado "Usuário"
+
 typedef struct NovoUsuario {
     char nome[20];
     char sobreNome[20];
@@ -21,7 +29,7 @@ typedef struct NovoFuncionario {
     char nascimento[10];//data
     char filiacao[20];//nome da mãe ou pai
     char nacionalidade[20];//país
-    char naturalidade[20];//estado
+    char naturalidade[3];//estado
     char pis[12];//numero de serie com 11 dígitos
     char ctps[12];//carteira de trabalho
     char escolaridade[50];//fundamental,colegial ou superior completo/incompleto
@@ -101,24 +109,16 @@ void CadastroU(usuario *Vetor[MAX])
             system("pause");
             system("cls");
         }
-        for(int y=0;y<MAX;y++)
+        for(i=0;i<MAX;i++)
         {
-            //Caso o índice do vetor estaja vazio ele pulará para o próximo, não preenchendo este espaço no arquivo.txt
-            if(users[y].nome==NULL)
-            {
-                continue;
-            }
-            else
-            {
-                //Aqui o programa salva as informações coletadas no arquivo.txt
-                fprintf(arq,"------------------------------------------------------------\n\n");
-                fprintf(arq,"\tNome: %s",users[y].nome);
-                fprintf(arq,"\n\tSobrenome: %s",users[y].sobreNome);
-                fprintf(arq,"\n\tNome de usuario: %s",users[y].usuario);
-                fprintf(arq,"\n\tE-mail: %s",users[y].email);
-                fprintf(arq,"\n\tSenha: %s",users[y].senha);
-                fprintf(arq,"\n\n------------------------------------------------------------\n\n");
-            }
+           //Aqui o programa salva as informações coletadas no arquivo.txt
+            fprintf(arq,"------------------------------------------------------------\n\n");
+            fprintf(arq,"\tNome: %s",users[i].nome);
+            fprintf(arq,"\n\tSobrenome: %s",users[i].sobreNome);
+            fprintf(arq,"\n\tNome de usuario: %s",users[i].usuario);
+            fprintf(arq,"\n\tE-mail: %s",users[i].email);
+            fprintf(arq,"\n\tSenha: %s",users[i].senha);
+            fprintf(arq,"\n\n------------------------------------------------------------\n\n");
         }
         fclose(arq);
     }
@@ -228,32 +228,24 @@ void CadastroF(funcionario *Vetor[MAX])
         }
         for(int y=0;y<MAX;y++)
         {
-            //Caso o índice do vetor estaja vazio ele pulará para o próximo, não preenchendo este espaço no arquivo.txt
-            if(funs[y].nome==NULL)
-            {
-                continue;
-            }
-            else
-            {
-                //Aqui o programa salva as informações coletadas no arquivo.txt
-                fprintf(arq,"------------------------------------------------------------\n\n");
-                fprintf(arq,"\tNome: %s",funs[y].nome);
-                fprintf(arq,"\n\tSobrenome: %s",funs[y].sobreNome);
-                fprintf(arq,"\n\tNascimento: %s",funs[y].nascimento);
-                fprintf(arq,"\n\tFiliacao: %s",funs[y].filiacao);
-                fprintf(arq,"\n\tNacionalidade: %s",funs[y].nacionalidade);
-                fprintf(arq,"\n\tNaturalidade: %s",funs[y].naturalidade);
-                fprintf(arq,"\n\tNumero de identificacao PIS/PASEP: %s",funs[y].pis);
-                fprintf(arq,"\n\tCarteira de Trabalho e Previdencia Social (CTPS): %s",funs[y].ctps);
-                fprintf(arq,"\n\tEscolaridade: %s",funs[y].escolaridade);
-                fprintf(arq,"\n\tCPF: %s",funs[y].cpf);
-                fprintf(arq,"\n\tRG: %s",funs[y].rg);
-                fprintf(arq,"\n\tTitulo de eleitor: %s",funs[y].eleitor);
-                fprintf(arq,"\n\tData de admissao: %s",funs[y].admisao);
-                fprintf(arq,"\n\tCargo/Funcao: %s",funs[y].cargo);
-                fprintf(arq,"\n\tRemuneracao: %f",funs[y].remuneracao);
-                fprintf(arq,"\n\n------------------------------------------------------------\n\n");
-            }
+            //Aqui o programa salva as informações coletadas no arquivo.txt
+            fprintf(arq,"------------------------------------------------------------\n\n");
+            fprintf(arq,"\tNome: %s",funs[y].nome);
+            fprintf(arq,"\n\tSobrenome: %s",funs[y].sobreNome);
+            fprintf(arq,"\n\tNascimento: %s",funs[y].nascimento);
+            fprintf(arq,"\n\tFiliacao: %s",funs[y].filiacao);
+            fprintf(arq,"\n\tNacionalidade: %s",funs[y].nacionalidade);
+            fprintf(arq,"\n\tNaturalidade: %s",funs[y].naturalidade);
+            fprintf(arq,"\n\tNumero de identificacao PIS/PASEP: %s",funs[y].pis);
+            fprintf(arq,"\n\tCarteira de Trabalho e Previdencia Social (CTPS): %s",funs[y].ctps);
+            fprintf(arq,"\n\tEscolaridade: %s",funs[y].escolaridade);
+            fprintf(arq,"\n\tCPF: %s",funs[y].cpf);
+            fprintf(arq,"\n\tRG: %s",funs[y].rg);
+            fprintf(arq,"\n\tTitulo de eleitor: %s",funs[y].eleitor);
+            fprintf(arq,"\n\tData de admissao: %s",funs[y].admisao);
+            fprintf(arq,"\n\tCargo/Funcao: %s",funs[y].cargo);
+            fprintf(arq,"\n\tRemuneracao: %f",funs[y].remuneracao);
+            fprintf(arq,"\n\n------------------------------------------------------------\n\n");
         }
         fclose(arq);
     }
@@ -343,26 +335,18 @@ void CadastroC(cliente *Vetor[MAX])
         }
         for(int y=0;y<MAX;y++)
         {
-            //Caso o índice do vetor estaja vazio ele pulará para o próximo, não preenchendo este espaço no arquivo.txt
-            if(cli[y].nomeCompleto==NULL)
-            {
-                continue;
-            }
-            else
-            {
-                //Aqui o programa salva as informações coletadas no arquivo.txt
-                fprintf(arq,"------------------------------------------------------------\n\n");
-                fprintf(arq,"\tNome Completo: %s",cli[y].nomeCompleto);
-                fprintf(arq,"\n\tCPF: %s",cli[y].cpf);
-                fprintf(arq,"\n\tData de nascimento: %s",cli[y].nascimento);
-                fprintf(arq,"\n\tEndereco: %s",cli[y].rua);
-                fprintf(arq,"\n\tNumero: %i",cli[y].num);
-                fprintf(arq,"\n\tBairro: %s",cli[y].bairro);
-                fprintf(arq,"\n\tCEP: %s",cli[y].cep);
-                fprintf(arq,"\n\tTelefone: %s",cli[y].tel);
-                fprintf(arq,"\n\tEndereco de E-mail: %s",cli[y].email);
-                fprintf(arq,"\n\n------------------------------------------------------------\n\n");
-            }
+            //Aqui o programa salva as informações coletadas no arquivo.txt
+            fprintf(arq,"------------------------------------------------------------\n\n");
+            fprintf(arq,"\tNome Completo: %s",cli[y].nomeCompleto);
+            fprintf(arq,"\n\tCPF: %s",cli[y].cpf);
+            fprintf(arq,"\n\tData de nascimento: %s",cli[y].nascimento);
+            fprintf(arq,"\n\tEndereco: %s",cli[y].rua);
+            fprintf(arq,"\n\tNumero: %i",cli[y].num);
+            fprintf(arq,"\n\tBairro: %s",cli[y].bairro);
+            fprintf(arq,"\n\tCEP: %s",cli[y].cep);
+            fprintf(arq,"\n\tTelefone: %s",cli[y].tel);
+            fprintf(arq,"\n\tEndereco de E-mail: %s",cli[y].email);
+            fprintf(arq,"\n\n------------------------------------------------------------\n\n");
         }
         fclose(arq);
     }
@@ -441,21 +425,13 @@ void CadastroP(produto *Vetor[MAX])
         }
         for(int y=0;y<MAX;y++)
         {
-            //Caso o índice do vetor estaja vazio ele pulará para o próximo, não preenchendo este espaço no arquivo.txt
-            if(prods[y].nome==NULL)
-            {
-                continue;
-            }
-            else
-            {
-                //Aqui o programa salva as informações coletadas no arquivo.txt
-                fprintf(arq,"------------------------------------------------------------\n\n");
-                fprintf(arq,"\tTipo de produto: %s",prods[y].tipo);
-                fprintf(arq,"\n\tNome do produto: %s",prods[y].nome);
-                fprintf(arq,"\n\tPreco do produto: %.2f",prods[y].preco);
-                fprintf(arq,"\n\tID do produto: %i",prods[y].id);
-                fprintf(arq,"\n\n------------------------------------------------------------\n\n");
-            }
+            //Aqui o programa salva as informações coletadas no arquivo.txt
+            fprintf(arq,"------------------------------------------------------------\n\n");
+            fprintf(arq,"\tTipo de produto: %s",prods[y].tipo);
+            fprintf(arq,"\n\tNome do produto: %s",prods[y].nome);
+            fprintf(arq,"\n\tPreco do produto: %.2f",prods[y].preco);
+            fprintf(arq,"\n\tID do produto: %i",prods[y].id);
+            fprintf(arq,"\n\n------------------------------------------------------------\n\n");
         }
         fclose(arq);
     }
@@ -511,34 +487,26 @@ void ListaP(FILE *Arquivo)
 void main()
 {
     //Criação de ponteiros
-    FILE *larq,*arq,*lfarq,*farq,*lcarq,*carq,*pparq,*parq;
+    FILE *arq,*farq,*carq,*parq;
     //Abrindo arquivos com permissão de leitura
     arq = fopen ("D:/Trabalho/PIM/Usuarios.txt","r");
     farq = fopen("D:/Trabalho/PIM/Funcionarios.txt","r");
     carq = fopen("D:/Trabalho/PIM/Clientes.txt","r");
     parq = fopen("D:/Trabalho/PIM/Produtos.txt","r");
-    //Atribuição de ponteiros de arquivos
-    lfarq = farq;
-    larq = arq;
-    lcarq = carq;
-    pparq = parq;
-    //Criação de Vetores e ponteiros
-    usuario *puser, user[MAX]; 
-    funcionario *pfuns, funs[MAX];
-    cliente *pcli, cli[MAX];
-    produto *pprods, prods[MAX];
-    //Atribruição de endereços de vetores
-    pfuns = funs;
-    puser = user;
-    pcli = cli;
-    pprods = prods;
+    //Criação de Vetores
+    usuario user[MAX]; 
+    funcionario funs[MAX];
+    cliente cli[MAX];
+    produto prods[MAX];
     //Menu principal do programa
-    int opc,cont;
+    int opc;
+    system("cls");
+    printf("\n\n\n                      Seja bem-vindo!\n\n\n\n\n");
+    system("pause");
     do{
         //Aqui ele mostrará esta tela repetidas vezes, até que o úsuario escolha a opção "Sair"
         system("cls");
         opc=0;
-        cont=0;
         printf("--------------------MENU--------------------\n\n");
         printf("           1 <> Novo perfil de usuario\n");
         printf("           2 <> Novo registro de funcionario\n");
@@ -557,31 +525,31 @@ void main()
         {
             case (1):
             //Aqui existe uma passagem de parametro para que a função Cadastro de Usuários possa ser executada
-                CadastroU(puser);
+                CadastroU(user);
                 system("cls");
                 fflush(stdin);
                 break;
             case (2):
             //Aqui existe uma passagem de parametro para que a função Cadastro de Funcionários possa ser executada
-                CadastroF(pfuns);
+                CadastroF(funs);
                 system("cls");
                 fflush(stdin);
                 break;
             case (3):
             //Aqui existe uma passagem de parametro para que a função Cadastro de Clientes possa ser executada
-                CadastroC(pcli);
+                CadastroC(cli);
                 system("cls");
                 fflush(stdin);
                 break;
             case (4):
             //Aqui existe uma passagem de parametro para que a função Cadastro de Produtos possa ser executada
-                CadastroP(pprods);
+                CadastroP(prods);
                 system("cls");
                 fflush(stdin);
                 break;
             case (5):
             //Aqui existe uma passagem de parametro para que a função Lista de Usuários possa ser executada
-                ListaU(larq);
+                ListaU(arq);
                 system("cls");
                 fflush(stdin);
                 break;
@@ -593,13 +561,13 @@ void main()
                 break;
             case (7):
             //Aqui existe uma passagem de parametro para que a função Lista de clientes possa ser executada
-                ListaC(lcarq);
+                ListaC(carq);
                 system("cls");
                 fflush(stdin);
                 break;
             case (8):
             //Aqui existe uma passagem de parametro para que a função Lista de Produtos possa ser executada
-                ListaP(pparq);
+                ListaP(parq);
                 system("cls");
                 fflush(stdin);
                 break;
