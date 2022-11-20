@@ -1,15 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#define MAX 1
-
-//Definindo novo tipo de dado "Usuário"
-
-typedef struct DATA {
-    char dia[4];
-    char mes[4];
-    char ano[6];
-}Data;
 
 //Definindo novo tipo de dado "Usuário"
 
@@ -50,7 +41,7 @@ typedef struct NovoCliente {
     char rua[50];
     int num;
     char bairro[50];
-    char cep[10];
+    char cidade[50];
     char tel[15];
     char email[50];
 }cliente;
@@ -67,11 +58,9 @@ typedef struct {
 
 //Função responsável por realizar o cadastro dos usuarios e salvar os dados em arquivo.txt
 
-void CadastroU(usuario *Vetor[MAX])
+void CadastroU(usuario user)
 {
-    int i;
-    usuario users[MAX];
-    FILE *arq,*esc;
+    FILE *arq;
     //Escolhendo diretório onde arquivo será salvo e concedendo a permissão de escrita e leitura
     arq = fopen ("D:/Trabalho/PIM/Usuarios.txt","a+");
     //Caso o arquivo ainda não exista execute isso, e então o arquivo será criado
@@ -83,8 +72,6 @@ void CadastroU(usuario *Vetor[MAX])
     }
     else
     {
-        for(i=0;i<MAX;i++)
-        {
             //Aqui é realizada a coleta de dados
             //função "system("cls");" é responsável por limpar a tela
             //Função "fflush(stdin);" serve para limpar o buffer do teclado, caso não for posta resultara em erro
@@ -92,43 +79,39 @@ void CadastroU(usuario *Vetor[MAX])
             printf("--------------------CADASTRO DE USUARIO--------------------\n\n");
             printf("                    Nome: ");
             fflush (stdin);
-            scanf("%[^\n]s",&users[i].nome);
+            gets(user.nome);
             printf("                    Sobrenome: ");
             fflush (stdin);
-            scanf("%s",&users[i].sobreNome);
+            gets(user.sobreNome);
             printf("                    Nome de usuario: ");
             fflush (stdin);
-            scanf("%s",&users[i].usuario);
+            gets(user.usuario);
             printf("                    endereco de email: ");
             fflush (stdin);
-            scanf("%s",&users[i].email);
+            gets(user.email);
             printf("                    senha: ");
             fflush (stdin);
-            scanf("%s",&users[i].senha);
+            gets(user.senha);
             puts("\nUsuario cadastrado!");
             system("pause");
             system("cls");
-        }
-        for(i=0;i<MAX;i++)
-        {
-           //Aqui o programa salva as informações coletadas no arquivo.txt
+            //Aqui o programa salva as informações coletadas no arquivo.txt
             fprintf(arq,"------------------------------------------------------------\n\n");
-            fprintf(arq,"\tNome: %s",users[i].nome);
-            fprintf(arq,"\n\tSobrenome: %s",users[i].sobreNome);
-            fprintf(arq,"\n\tNome de usuario: %s",users[i].usuario);
-            fprintf(arq,"\n\tE-mail: %s",users[i].email);
-            fprintf(arq,"\n\tSenha: %s",users[i].senha);
+            fprintf(arq,"\tNome: %s",user.nome);
+            fprintf(arq,"\n\tSobrenome: %s",user.sobreNome);
+            fprintf(arq,"\n\tNome de usuario: %s",user.usuario);
+            fprintf(arq,"\n\tE-mail: %s",user.email);
+            fprintf(arq,"\n\tSenha: %s",user.senha);
             fprintf(arq,"\n\n------------------------------------------------------------\n\n");
-        }
-        fclose(arq);
+            fclose(arq);
     }
 }
 
 //Função resposável por mostrar todos os dados de usuarios armazenados em arquivo.txt 
 
-void ListaU(FILE *Arquivo)
+void ListaU(FILE *ArquivoU)
 {
-    FILE *arq,*esc;
+    FILE *arq;
     //Abrindo o diretório e concedendo a permissão de somente leitura
     arq = fopen ("D:/Trabalho/PIM/Usuarios.txt","r");
     if (arq == NULL)
@@ -155,11 +138,9 @@ void ListaU(FILE *Arquivo)
 
 //Função responsavel por criar novos registros de funcionarios
 
-void CadastroF(funcionario *Vetor[MAX])
+void CadastroF(funcionario funs)
 {
-    int i;
-    funcionario funs[MAX];
-    FILE *arq,*esc;
+    FILE *arq;
     //Escolhendo diretório onde arquivo será salvo e concedendo a permissão de escrita e leitura
     arq = fopen ("D:/Trabalho/PIM/Funcionarios.txt","a+");
     //Caso o arquivo ainda não exista execute isso, e então o arquivo será criado
@@ -171,87 +152,81 @@ void CadastroF(funcionario *Vetor[MAX])
     }
     else
     {
-        for(i=0;i<MAX;i++)
-        {
-            //Aqui é realizada a coleta de dados
-            //função "system("cls");" é responsável por limpar a tela
-            //Função "fflush(stdin);" serve para limpar o buffer do teclado, caso não for posta resultara em erro
-            system("cls");
-            printf("--------------------CADASTRO DE FUNCIONARIO--------------------\n\n");
-            printf("                    Nome: ");
-            fflush (stdin);
-            scanf("%[^\n]s",&funs[i].nome);
-            printf("                    Sobrenome: ");
-            fflush (stdin);
-            scanf("%s",&funs[i].sobreNome);
-            printf("                    Data de nascimento: ");
-            fflush (stdin);
-            scanf("%s",&funs[i].nascimento);
-            printf("                    Filiacao: ");
-            fflush (stdin);
-            scanf("%[^\n]s",&funs[i].filiacao);
-            printf("                    Nacionalidade: ");
-            fflush (stdin);
-            scanf("%s",&funs[i].nacionalidade);
-            printf("                    Naturalidade: ");
-            fflush (stdin);
-            scanf("%s",&funs[i].naturalidade);
-            printf("                    Numero de identificacao PIS/PASEP: ");
-            fflush (stdin);
-            scanf("%s",&funs[i].pis);
-            printf("                    Carteira de Trabalho e Previdencia Social (CTPS): ");
-            fflush (stdin);
-            scanf("%s",&funs[i].ctps);
-            printf("                    Escolaridade: ");
-            fflush (stdin);
-            scanf("%[^\n]s",&funs[i].escolaridade);
-            printf("                    CPF: ");
-            fflush (stdin);
-            scanf("%s",&funs[i].cpf);
-            printf("                    RG: ");
-            fflush (stdin);
-            scanf("%s",&funs[i].rg);
-            printf("                    Titulo de eleitor: ");
-            fflush (stdin);
-            scanf("%s",&funs[i].eleitor);
-            printf("                    Data de admissao: ");
-            fflush (stdin);
-            scanf("%s",&funs[i].admisao);
-            printf("                    Cargo/Funcao: ");
-            fflush (stdin);
-            scanf("%[^\n]s",&funs[i].cargo);
-            printf("                    Remuneracao: ");
-            fflush (stdin);
-            scanf("%f",&funs[i].remuneracao);
-            puts("\nFuncionario cadastrado!\n");
-            system("pause");
-        }
-        for(int y=0;y<MAX;y++)
-        {
-            //Aqui o programa salva as informações coletadas no arquivo.txt
-            fprintf(arq,"------------------------------------------------------------\n\n");
-            fprintf(arq,"\tNome: %s",funs[y].nome);
-            fprintf(arq,"\n\tSobrenome: %s",funs[y].sobreNome);
-            fprintf(arq,"\n\tNascimento: %s",funs[y].nascimento);
-            fprintf(arq,"\n\tFiliacao: %s",funs[y].filiacao);
-            fprintf(arq,"\n\tNacionalidade: %s",funs[y].nacionalidade);
-            fprintf(arq,"\n\tNaturalidade: %s",funs[y].naturalidade);
-            fprintf(arq,"\n\tNumero de identificacao PIS/PASEP: %s",funs[y].pis);
-            fprintf(arq,"\n\tCarteira de Trabalho e Previdencia Social (CTPS): %s",funs[y].ctps);
-            fprintf(arq,"\n\tEscolaridade: %s",funs[y].escolaridade);
-            fprintf(arq,"\n\tCPF: %s",funs[y].cpf);
-            fprintf(arq,"\n\tRG: %s",funs[y].rg);
-            fprintf(arq,"\n\tTitulo de eleitor: %s",funs[y].eleitor);
-            fprintf(arq,"\n\tData de admissao: %s",funs[y].admisao);
-            fprintf(arq,"\n\tCargo/Funcao: %s",funs[y].cargo);
-            fprintf(arq,"\n\tRemuneracao: %f",funs[y].remuneracao);
-            fprintf(arq,"\n\n------------------------------------------------------------\n\n");
-        }
+        //Aqui é realizada a coleta de dados
+        //função "system("cls");" é responsável por limpar a tela
+        //Função "fflush(stdin);" serve para limpar o buffer do teclado, caso não for posta resultara em erro
+        system("cls");
+        printf("--------------------CADASTRO DE FUNCIONARIO--------------------\n\n");
+        printf("                    Nome: ");
+        fflush (stdin);
+        gets(funs.nome);
+        printf("                    Sobrenome: ");
+        fflush (stdin);
+        gets(funs.sobreNome);
+        printf("                    Data de nascimento: ");
+        fflush (stdin);
+        gets(funs.nascimento);
+        printf("                    Filiacao: ");
+        fflush (stdin);
+        gets(funs.filiacao);
+        printf("                    Nacionalidade: ");
+        fflush (stdin);
+        gets(funs.nacionalidade);
+        printf("                    Naturalidade: ");
+        fflush (stdin);
+        gets(funs.naturalidade);
+        printf("                    Numero de identificacao PIS/PASEP: ");
+        fflush (stdin);
+        gets(funs.pis);
+        printf("                    Carteira de Trabalho e Previdencia Social (CTPS): ");
+        fflush (stdin);
+        gets(funs.ctps);
+        printf("                    Escolaridade: ");
+        fflush (stdin);
+        gets(funs.escolaridade);
+        printf("                    CPF: ");
+        fflush (stdin);
+        gets(funs.cpf);
+        printf("                    RG: ");
+        fflush (stdin);
+        gets(funs.rg);
+        printf("                    Titulo de eleitor: ");
+        fflush (stdin);
+        gets(funs.eleitor);
+        printf("                    Data de admissao: ");
+        fflush (stdin);
+        gets(funs.admisao);
+        printf("                    Cargo/Funcao: ");
+        fflush (stdin);
+        gets(funs.cargo);
+        printf("                    Remuneracao: ");
+        fflush (stdin);
+        scanf("%f",&funs.remuneracao);
+        puts("\nFuncionario cadastrado!\n");
+        system("pause");
+        //Aqui o programa salva as informações coletadas no arquivo.txt
+        fprintf(arq,"------------------------------------------------------------\n\n");
+        fprintf(arq,"\tNome: %s",funs.nome);
+        fprintf(arq,"\n\tSobrenome: %s",funs.sobreNome);
+        fprintf(arq,"\n\tNascimento: %s",funs.nascimento);
+        fprintf(arq,"\n\tFiliacao: %s",funs.filiacao);
+        fprintf(arq,"\n\tNacionalidade: %s",funs.nacionalidade);
+        fprintf(arq,"\n\tNaturalidade: %s",funs.naturalidade);
+        fprintf(arq,"\n\tNumero de identificacao PIS/PASEP: %s",funs.pis);
+        fprintf(arq,"\n\tCarteira de Trabalho e Previdencia Social (CTPS): %s",funs.ctps);
+        fprintf(arq,"\n\tEscolaridade: %s",funs.escolaridade);
+        fprintf(arq,"\n\tCPF: %s",funs.cpf);
+        fprintf(arq,"\n\tRG: %s",funs.rg);
+        fprintf(arq,"\n\tTitulo de eleitor: %s",funs.eleitor);
+        fprintf(arq,"\n\tData de admissao: %s",funs.admisao);
+        fprintf(arq,"\n\tCargo/Funcao: %s",funs.cargo);
+        fprintf(arq,"\n\tRemuneracao: %f",funs.remuneracao);
+        fprintf(arq,"\n\n------------------------------------------------------------\n\n");
         fclose(arq);
     }
 }
 
-void ListaF(FILE *Arquivo)
+void ListaF(FILE *ArquivoF)
 {
     FILE *arq,*esc;
     //Abrindo o diretório e concedendo a permissão de somente leitura
@@ -280,11 +255,9 @@ void ListaF(FILE *Arquivo)
 
 //Função responsável por cadastrar novos clientes
 
-void CadastroC(cliente *Vetor[MAX])
+void CadastroC(cliente cli)
 {
-    int i;
-    cliente cli[MAX];
-    FILE *arq,*esc;
+    FILE *arq;
     //Escolhendo diretório onde arquivo será salvo e concedendo a permissão de escrita e leitura
     arq = fopen ("D:/Trabalho/PIM/Clientes.txt","a+");
     //Caso o arquivo ainda não exista execute isso, e então o arquivo será criado
@@ -296,67 +269,61 @@ void CadastroC(cliente *Vetor[MAX])
     }
     else
     {
-        for(i=0;i<MAX;i++)
-        {
-            //Aqui é realizada a coleta de dados
-            //função "system("cls");" é responsável por limpar a tela
-            //Função "fflush(stdin);" serve para limpar o buffer do teclado, caso não for posta resultara em erro
-            system("cls");
-            printf("--------------------CADASTRO DE CLIENTE--------------------\n\n");
-            printf("                    Nome Completo: ");
-            fflush (stdin);
-            scanf("%[^\n]s",&cli[i].nomeCompleto);
-            printf("                    CPF: ");
-            fflush (stdin);
-            scanf("%s",&cli[i].cpf);
-            printf("                    Data de nascimento: ");
-            fflush (stdin);
-            scanf("%s",&cli[i].nascimento);
-            printf("                    Endereco: ");
-            fflush (stdin);
-            scanf("%[^\n]s",&cli[i].rua);
-            printf("                    Numero: ");
-            fflush (stdin);
-            scanf("%i",&cli[i].num);
-            printf("                    Bairro: ");
-            fflush (stdin);
-            scanf("%[^\n]s",&cli[i].bairro);
-            printf("                    CEP: ");
-            fflush (stdin);
-            scanf("%s",&cli[i].cep);
-            printf("                    Telefone: ");
-            fflush (stdin);
-            scanf("%[^\n]s",&cli[i].tel);
-            printf("                    Endereco de E-mail: ");
-            fflush (stdin);
-            scanf("%s",&cli[i].email);
-            puts("\nCliente cadastrado!\n");
-            system("pause");
-        }
-        for(int y=0;y<MAX;y++)
-        {
-            //Aqui o programa salva as informações coletadas no arquivo.txt
-            fprintf(arq,"------------------------------------------------------------\n\n");
-            fprintf(arq,"\tNome Completo: %s",cli[y].nomeCompleto);
-            fprintf(arq,"\n\tCPF: %s",cli[y].cpf);
-            fprintf(arq,"\n\tData de nascimento: %s",cli[y].nascimento);
-            fprintf(arq,"\n\tEndereco: %s",cli[y].rua);
-            fprintf(arq,"\n\tNumero: %i",cli[y].num);
-            fprintf(arq,"\n\tBairro: %s",cli[y].bairro);
-            fprintf(arq,"\n\tCEP: %s",cli[y].cep);
-            fprintf(arq,"\n\tTelefone: %s",cli[y].tel);
-            fprintf(arq,"\n\tEndereco de E-mail: %s",cli[y].email);
-            fprintf(arq,"\n\n------------------------------------------------------------\n\n");
-        }
+        //Aqui é realizada a coleta de dados
+        //função "system("cls");" é responsável por limpar a tela
+         //Função "fflush(stdin);" serve para limpar o buffer do teclado, caso não for posta resultara em erro
+        system("cls");
+        printf("--------------------CADASTRO DE CLIENTE--------------------\n\n");
+        printf("                    Nome Completo: ");
+        fflush (stdin);
+        gets(cli.nomeCompleto);
+        printf("                    CPF: ");
+        fflush (stdin);
+        gets(cli.cpf);
+        printf("                    Data de nascimento: ");
+        fflush (stdin);
+        gets(cli.nascimento);
+        printf("                    Endereco: ");
+        fflush (stdin);
+        gets(cli.rua);
+        printf("                    Numero: ");
+        fflush (stdin);
+        gets(cli.num);
+        printf("                    Bairro: ");
+        fflush (stdin);
+        gets(cli.bairro);
+        printf("                    Cidade: ");
+        fflush (stdin);
+        gets(cli.cidade);
+        printf("                    Telefone: ");
+        fflush (stdin);
+        gets(cli.tel);
+        printf("                    Endereco de E-mail: ");
+        fflush (stdin);
+        gets(cli.email);
+        puts("\nCliente cadastrado!\n");
+        system("pause");
+        //Aqui o programa salva as informações coletadas no arquivo.txt
+        fprintf(arq,"------------------------------------------------------------\n\n");
+        fprintf(arq,"\tNome Completo: %s",cli.nomeCompleto);
+        fprintf(arq,"\n\tCPF: %s",cli.cpf);
+        fprintf(arq,"\n\tData de nascimento: %s",cli.nascimento);
+        fprintf(arq,"\n\tEndereco: %s",cli.rua);
+        fprintf(arq,"\n\tNumero: %i",cli.num);
+        fprintf(arq,"\n\tBairro: %s",cli.bairro);
+        fprintf(arq,"\n\tCidade: %s",cli.cidade);
+        fprintf(arq,"\n\tTelefone: %s",cli.tel);
+        fprintf(arq,"\n\tEndereco de E-mail: %s",cli.email);
+        fprintf(arq,"\n\n------------------------------------------------------------\n\n");
         fclose(arq);
     }
 }
 
 //Função Lista de Clientes
 
-void ListaC(FILE *Arquivo)
+void ListaC(FILE *ArquivoC)
 {
-    FILE *arq,*esc;
+    FILE *arq;
     //Abrindo o diretório e concedendo a permissão de somente leitura
     arq = fopen ("D:/Trabalho/PIM/Clientes.txt","r");
     if (arq == NULL)
@@ -384,10 +351,8 @@ void ListaC(FILE *Arquivo)
 
 //Função responsável por realizar o cadastro dos itens e salvar os dados em arquivo.txt
 
-void CadastroP(produto *Vetor[MAX])
+void CadastroP(produto prods)
 {
-    int i;
-    produto prods[MAX];
     FILE *arq,*esc;
     //Escolhendo diretório onde arquivo será salvo e concedendo a permissão de escrita e leitura
     arq = fopen ("D:/Trabalho/PIM/Produtos.txt","a+");
@@ -400,48 +365,41 @@ void CadastroP(produto *Vetor[MAX])
     }
     else
     {
-        for(i=0;i<MAX;i++)
-        {
-            //função "system("cls");" é responsável por limpar a tela
-            //Função "fflush(stdin);" serve para limpar o buffer do teclado, caso não for posta resultara em erro
-            system("cls");
-            printf("--------------------CADASTRO DE PRODUTOS--------------------\n\n");
-            printf("                    Tipo do produto: ");
-            fflush (stdin);
-            scanf("%[^\n]s",&prods[i].tipo);
-            printf("                    Nome do produto: ");
-            fflush (stdin);
-            scanf("%[^\n]s",&prods[i].nome);
-            printf("                    Valor do produto: ");
-            fflush (stdin);
-            scanf("%f",&prods[i].preco);
-            printf("                    Codigo do produto: ");
-            fflush (stdin);
-            scanf("%i",&prods[i].id);
-
-            puts("\nproduto cadastrado!");
-            system("pause");
-            system("cls");
-        }
-        for(int y=0;y<MAX;y++)
-        {
-            //Aqui o programa salva as informações coletadas no arquivo.txt
-            fprintf(arq,"------------------------------------------------------------\n\n");
-            fprintf(arq,"\tTipo de produto: %s",prods[y].tipo);
-            fprintf(arq,"\n\tNome do produto: %s",prods[y].nome);
-            fprintf(arq,"\n\tPreco do produto: %.2f",prods[y].preco);
-            fprintf(arq,"\n\tID do produto: %i",prods[y].id);
-            fprintf(arq,"\n\n------------------------------------------------------------\n\n");
-        }
+        //função "system("cls");" é responsável por limpar a tela
+         //Função "fflush(stdin);" serve para limpar o buffer do teclado, caso não for posta resultara em erro
+        system("cls");
+        printf("--------------------CADASTRO DE PRODUTOS--------------------\n\n");
+        printf("                    Tipo do produto: ");
+        fflush (stdin);
+        gets(prods.tipo);
+        printf("                    Nome do produto: ");
+        fflush (stdin);
+        gets(prods.nome);
+        printf("                    Valor do produto: ");
+        fflush (stdin);
+        scanf("%f",&prods.preco);
+        printf("                    Codigo do produto: ");
+        fflush (stdin);
+        scanf("%i",&prods.id);
+        puts("\nproduto cadastrado!");
+        system("pause");
+        system("cls");
+        //Aqui o programa salva as informações coletadas no arquivo.txt
+        fprintf(arq,"------------------------------------------------------------\n\n");
+        fprintf(arq,"\tTipo de produto: %s",prods.tipo);
+        fprintf(arq,"\n\tNome do produto: %s",prods.nome);
+        fprintf(arq,"\n\tPreco do produto: %.2f",prods.preco);
+        fprintf(arq,"\n\tID do produto: %i",prods.id);
+        fprintf(arq,"\n\n------------------------------------------------------------\n\n");
         fclose(arq);
     }
 }
 
 //Função resposável por mostrar todos os dados armazenados no arquivo.txt 
 
-void ListaP(FILE *Arquivo)
+void ListaP(FILE *ArquivoP)
 {
-    FILE *arq,*esc;
+    FILE *arq;
     //Abrindo o diretório e concedendo a permissão de somente leitura
     arq = fopen ("D:/Trabalho/PIM/Produtos.txt","r");
     if (arq == NULL)
@@ -475,16 +433,56 @@ void ListaP(FILE *Arquivo)
     if (arq == NULL)
     {
         puts("Não foi possivel abrir arquivo\n");
-        exit(1);
+        fclose(arq);
     }
     fclose(arq);
     puts("\n");
     system("pause");
 }*/
 
-//Função "main" encarregada das tarefas principais do código  
 
-void main()
+void MenuPrincipal()
+{
+    system("cls");
+    int opc;
+    do{
+        opc=0;
+        printf("--------------------MENU--------------------\n\n");
+        printf("           1 <> Novos cadastros\n");
+        printf("           2 <> Exibir Listas\n");
+        printf("           3 <> Trocar perfil de usuario\n");
+        printf("           4 <> Fechar programa\n\n");
+        printf("Opcao: ");
+        fflush(stdin);
+        scanf("%i",&opc);
+        system("cls");
+        switch(opc)
+        {
+            case (1):
+                MenuCadastros();
+                system("cls");
+                fflush(stdin);
+                break;
+            case (2):
+                MenuListas();
+                system("cls");
+                fflush(stdin);
+                break;
+            case (3):
+                system("cls");
+                printf("\n\n\n                      Usuario desconectado.\n\n\n\n\n");
+                system("pause");
+                system("cls");
+                Login();
+                break;
+        }
+    }while(opc!=4);
+    printf("\n\n\n                      Ate logo\n\n\n\n\n");
+    system("pause");
+    system("cls");
+}
+
+void MenuListas()
 {
     //Criação de ponteiros
     FILE *arq,*farq,*carq,*parq;
@@ -494,29 +492,86 @@ void main()
     carq = fopen("D:/Trabalho/PIM/Clientes.txt","r");
     parq = fopen("D:/Trabalho/PIM/Produtos.txt","r");
     //Criação de Vetores
-    usuario user[MAX]; 
-    funcionario funs[MAX];
-    cliente cli[MAX];
-    produto prods[MAX];
+    usuario user; 
+    funcionario funs;
+    cliente cli;
+    produto prods;
     //Menu principal do programa
     int opc;
-    system("cls");
-    printf("\n\n\n                      Seja bem-vindo!\n\n\n\n\n");
-    system("pause");
     do{
         //Aqui ele mostrará esta tela repetidas vezes, até que o úsuario escolha a opção "Sair"
         system("cls");
         opc=0;
-        printf("--------------------MENU--------------------\n\n");
+        printf("--------------------LISTAS--------------------\n\n");
+        printf("           1 <> Exibir usuarios\n");
+        printf("           2 <> Exibir dados de funcionarios\n");
+        printf("           3 <> Exibir clientes cadastrados\n");
+        printf("           4 <> Exibir lista de produtos\n");
+        printf("           5 <> Voltar\n\n");
+        printf("Opcao: ");
+        fflush(stdin);
+        scanf("%i",&opc);
+        system("cls");
+        switch(opc)
+        {
+            case (1):
+            //Aqui existe uma passagem de parametro para que a função Lista de Usuários possa ser executada
+                ListaU(arq);
+                system("cls");
+                fflush(stdin);
+                break;
+            case (2):
+            //Aqui existe uma passagem de parametro para que a função Lista de Funcionários possa ser executada
+                ListaF(farq);
+                system("cls");
+                fflush(stdin);
+                break;
+            case (3):
+            //Aqui existe uma passagem de parametro para que a função Lista de clientes possa ser executada
+                ListaC(carq);
+                system("cls");
+                fflush(stdin);
+                break;
+            case (4):
+            //Aqui existe uma passagem de parametro para que a função Lista de Produtos possa ser executada
+                ListaP(parq);
+                system("cls");
+                fflush(stdin);
+                break;
+        }
+    }while(opc!=5);
+    fclose(arq);
+    fclose(farq);
+    fclose(carq);
+    fclose(parq);
+}
+
+void MenuCadastros()
+{
+    //Criação de ponteiros
+    FILE *arq,*farq,*carq,*parq;
+    //Abrindo arquivos com permissão de leitura
+    arq = fopen ("D:/Trabalho/PIM/Usuarios.txt","r");
+    farq = fopen("D:/Trabalho/PIM/Funcionarios.txt","r");
+    carq = fopen("D:/Trabalho/PIM/Clientes.txt","r");
+    parq = fopen("D:/Trabalho/PIM/Produtos.txt","r");
+    //Criação de Vetores
+    usuario user; 
+    funcionario funs;
+    cliente cli;
+    produto prods;
+    int opc;
+    system("cls");
+    do{
+        //Aqui ele mostrará esta tela repetidas vezes, até que o úsuario escolha a opção "Sair"
+        system("cls");
+        opc=0;
+        printf("--------------------CADASTROS--------------------\n\n");
         printf("           1 <> Novo perfil de usuario\n");
         printf("           2 <> Novo registro de funcionario\n");
         printf("           3 <> Novo cadastro de cliente\n");
         printf("           4 <> Inserir novo produto\n");
-        printf("           5 <> Exibir usuarios\n");
-        printf("           6 <> Exibir dados de funcionarios\n");
-        printf("           7 <> Exibir clientes cadastrados\n");
-        printf("           8 <> Exibir lista de produtos\n");
-        printf("           9 <> Sair\n\n");
+        printf("           5 <> Voltar\n\n");
         printf("Opcao: ");
         fflush(stdin);
         scanf("%i",&opc);
@@ -547,37 +602,74 @@ void main()
                 system("cls");
                 fflush(stdin);
                 break;
-            case (5):
-            //Aqui existe uma passagem de parametro para que a função Lista de Usuários possa ser executada
-                ListaU(arq);
-                system("cls");
-                fflush(stdin);
-                break;
-            case (6):
-            //Aqui existe uma passagem de parametro para que a função Lista de Funcionários possa ser executada
-                ListaF(farq);
-                system("cls");
-                fflush(stdin);
-                break;
-            case (7):
-            //Aqui existe uma passagem de parametro para que a função Lista de clientes possa ser executada
-                ListaC(carq);
-                system("cls");
-                fflush(stdin);
-                break;
-            case (8):
-            //Aqui existe uma passagem de parametro para que a função Lista de Produtos possa ser executada
-                ListaP(parq);
-                system("cls");
-                fflush(stdin);
-                break;
         }
-    }while(opc!=9);
+    }while(opc!=5);
     fclose(arq);
     fclose(farq);
     fclose(carq);
     fclose(parq);
-    puts("\nAte logo...");
+}
+
+//A função de Login ainda não está definada corretamente  
+
+void Login()
+{
+    system("cls");
+    char usuario[50], senha[50];
+    printf("--------------------TELA DE LOGIN--------------------\n\n");
+    printf("\n                  <> Usuario: ");
+    gets(usuario);
+    printf("\n                  <> Senha: ");
+    gets(senha);
+    FILE *arq;
+    arq = fopen("D:\\Trabalho\\PIM\\Usuarios.txt","r");
+    /*char c;
+    int i;
+    while((c = fgetc(arq)) != EOF)
+    {
+        if(c == usuario)
+        { //Primeiro caracter da STRING que estamos buscando foi encontrado, vamos checas os subsequentes:
+            for(i = 0; i < strlen(usuario); i ++)
+            { //loop para comparar cada caracter da String pesquisada com o proximo caracter lido
+                c = fgetc(arq); //lê mais um caracter no arquivo
+                if(c == EOF)  //se encontrar o final do arquivo sai do loop
+                    break;
+                if((usuario + i) != c) //se algum caracter subsequente lido for diferente da string pesquisada sai do loop
+                    break;
+            }
+            if(i == strlen(usuario))
+            { //se i == qtd caracteres da String a pesquisar então achamos a string (a verificação não foi interrompida durante as comparações de caracteres)
+             //Aqui entra o seu código ao achar a STRING que você procurava
+              //  break;  //break para parar de ler o arquivo
+                MenuPrincipal();
+            }
+        }
+        else
+        {
+            system("cls");
+            printf("Usuario e/ou senha incorretos.\n\n");
+            system("pause");
+            system("cls");
+            printf("--------------------TELA DE LOGIN--------------------\n\n");
+            printf("\n                  <> Usuario: ");
+            gets(usuario);
+            printf("\n                  <> Senha: ");
+            gets(senha);
+        }
+    }*/
+    fclose(arq);
+    system("cls");
+    printf("\n\n\n                      Ola *USUARIO*\n\n\n\n\n");
     system("pause");
     system("cls");
+}
+
+void main()
+{
+    system("cls");
+    printf("\n\n\n                      Bem-Vindo!\n\n\n\n\n");
+    system("pause");
+    system("cls");
+    Login();
+    MenuPrincipal();
 }
