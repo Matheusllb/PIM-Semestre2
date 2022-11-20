@@ -616,11 +616,12 @@ void Login()
 {
     system("cls");
     char usuario[50], senha[50];
+    
     printf("--------------------TELA DE LOGIN--------------------\n\n");
     printf("\n                  <> Usuario: ");
-    gets(usuario);
+    scanf("%s",&usuario);
     printf("\n                  <> Senha: ");
-    gets(senha);
+    scanf("%s",&senha);
     FILE *arq;
     arq = fopen("D:\\Trabalho\\PIM\\Usuarios.txt","r");
     /*char c;
