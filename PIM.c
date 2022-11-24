@@ -6,7 +6,7 @@
 
 void main() {
     setlocale(LC_ALL, "Portuguese");
-    //Login();
+    Login();
     MenuPrincipal();
 }
 
@@ -86,13 +86,13 @@ void MenuPrincipal()
         opcUsuarios=0;
         printf("--------------------MENU--------------------\n\n");
         printf("           1 <> Novo Cadastro\n");
-        printf("           2 <> Menu Usuarios\n");
-        printf("           3 <> Menu Funcionarios\n");
+        printf("           2 <> Menu Usuários\n");
+        printf("           3 <> Menu Funcionários\n");
         printf("           4 <> Menu Clientes\n");
         printf("           5 <> Menu Produtos\n");
         printf("           6 <> Desconectar\n");
         printf("           7 <> Sair\n\n");
-        printf("Opcao: ");
+        printf("Opção: ");
         fflush(stdin);
         scanf("%d",&opc);
         system("cls");
@@ -125,20 +125,20 @@ void MenuPrincipal()
                 break;
             case 6:
                 system("cls");
-                printf("\n\n\n                      Usuario desconectado.\n\n\n\n\n");
+                printf("\n\n\n                      Usuário desconectado.\n\n\n\n\n");
                 system("pause");
                 system("cls");
-                //Login();
+                Login();
                 MenuPrincipal();
                 break;
             default:
-                printf("Opcao invalida!");
+                printf("Opção inválida!");
                 break;
         }
 
     }while(opc!=7);
     system("cls");
-    printf("\n\n\n                      Ate logo\n\n\n\n\n");
+    printf("\n\n\n                      Até logo\n\n\n\n\n");
     system("pause");
 
 }
@@ -151,12 +151,12 @@ void MenuCadastros()
         system("cls");
         opc=0;
         printf("--------------------CADASTROS--------------------\n\n");
-        printf("           1 <> Novo perfil de usuario\n");
-        printf("           2 <> Novo registro de funcionario\n");
+        printf("           1 <> Novo perfil de usuário\n");
+        printf("           2 <> Novo registro de funcionário\n");
         printf("           3 <> Novo cadastro de cliente\n");
-        printf("           4 <> Inserir novo produto\n");
+        printf("           4 <> Novo produto\n");
         printf("           5 <> Voltar\n\n");
-        printf("Opcao: ");
+        printf("Opção: ");
         fflush(stdin);
         scanf("%d",&opc);
         system("cls");
@@ -199,11 +199,11 @@ void CadastroU()
     USUARIO users;
     FILE *arqUsuarios;
     //Escolhendo diretório onde arquivo será salvo e concedendo a permissão de escrita e leitura
-    arqUsuarios = fopen ("D:\\Trabalho\\Gustavo\\Usuarios.txt","ab");
+    arqUsuarios = fopen ("Usuarios.txt","ab");
     //Caso o arquivo ainda não exista execute isso, e então o arquivo será criado
     if (arqUsuarios == NULL)
     {
-        puts("Nenhum usuário cadastrado\n");
+        puts("Nenhum usuário cadastrado...\n");
         fclose(arqUsuarios);
     }
     else
@@ -212,7 +212,7 @@ void CadastroU()
             //função "system("cls");" é responsável por limpar a tela
             //Função "fflush(stdin);" serve para limpar o buffer do teclado, caso não for posta resultara em erro
             system("cls");
-            printf("--------------------CADASTRO DE USUARIO--------------------\n\n");
+            printf("--------------------CADASTRO DE USUÁRIO--------------------\n\n");
 
             fflush (stdin);
             printf("                    Nome: ");
@@ -223,11 +223,11 @@ void CadastroU()
             gets(users.sobreNome);
 
             fflush (stdin);
-            printf("                    Nome de usuario: ");
+            printf("                    Nome de usuário: ");
             gets(users.usuario);
 
             fflush (stdin);
-            printf("                    endereco de email: ");
+            printf("                    endereço de email: ");
             gets(users.email);
 
             fflush (stdin);
@@ -236,7 +236,7 @@ void CadastroU()
 
             fwrite(&users, sizeof(USUARIO), 1, arqUsuarios);
 
-            puts("\nUsuario cadastrado!");
+            puts("\nUsuário cadastrado!");
         }
     fclose(arqUsuarios);
 }
@@ -246,11 +246,11 @@ void CadastroF()
     FUNCIONARIO funs;
     FILE *arqFuncionarios;
     //Escolhendo diretório onde arquivo será salvo e concedendo a permissão de escrita e leitura
-    arqFuncionarios = fopen ("D:\\Trabalho\\Gustavo\\Funcionarios.txt","ab");
+    arqFuncionarios = fopen ("Funcionarios.txt","ab");
     //Caso o arquivo ainda não exista execute isso, e então o arquivo será criado
     if (arqFuncionarios == NULL)
     {
-        puts("Nenhum Funcionario cadastrado\n");
+        puts("Nenhum Funcionário cadastrado...\n");
         fclose(arqFuncionarios);
     }
     else
@@ -259,7 +259,7 @@ void CadastroF()
             //função "system("cls");" é responsável por limpar a tela
             //Função "fflush(stdin);" serve para limpar o buffer do teclado, caso não for posta resultara em erro
             system("cls");
-            printf("--------------------CADASTRO DE FUNCIONARIO--------------------\n\n");
+            printf("--------------------CADASTRO DE FUNCIONÁRIO--------------------\n\n");
 
             fflush (stdin);
             printf("                    Nome: ");
@@ -274,7 +274,7 @@ void CadastroF()
             scanf("%d %d %d", &funs.nascimento.dia, &funs.nascimento.mes, &funs.nascimento.ano);
 
             fflush (stdin);
-            printf("                    Filiacao: ");
+            printf("                    Filiação: ");
             gets(funs.filiacao);
 
             fflush (stdin);
@@ -286,11 +286,11 @@ void CadastroF()
             gets(funs.naturalidade);
 
             fflush (stdin);
-            printf("                    Numero de identificacao PIS/PASEP: ");
+            printf("                    Numero de identificação PIS/PASEP: ");
             gets(funs.pis);
 
             fflush (stdin);
-            printf("                    Carteira de Trabalho e Previdencia Social (CTPS): ");
+            printf("                    Carteira de Trabalho e Previdência Social (CTPS): ");
             gets(funs.ctps);
 
             fflush (stdin);
@@ -310,20 +310,20 @@ void CadastroF()
             gets(funs.eleitor);
 
             fflush (stdin);
-            printf("                    Data de admissao: ");
+            printf("                    Data de admissão: ");
             scanf("%d %d %d", &funs.admissao.dia, &funs.admissao.mes, &funs.admissao.ano);
 
             fflush (stdin);
-            printf("                    Cargo/Funcao: ");
+            printf("                    Cargo/Função: ");
             gets(funs.cargo);
 
             fflush (stdin);
-            printf("                    Remuneracao: ");
+            printf("                    Remuneração: ");
             scanf("%d", &funs.remuneracao);
 
             fwrite(&funs, sizeof(FUNCIONARIO), 1, arqFuncionarios);
 
-            puts("\nFuncionario cadastrado!\n");
+            puts("\nFuncionário cadastrado!\n");
             system("pause");
 
         }
@@ -335,11 +335,11 @@ void CadastroC()
     CLIENTE cli;
     FILE *arqClientes;
     //Escolhendo diretório onde arquivo será salvo e concedendo a permissão de escrita e leitura
-    arqClientes = fopen ("D:\\Trabalho\\Gustavo\\Clientes.txt","ab");
+    arqClientes = fopen ("Clientes.txt","ab");
     //Caso o arquivo ainda não exista execute isso, e então o arquivo será criado
     if (arqClientes == NULL)
     {
-        puts("Nenhum Cliente cadastrado\n");
+        puts("Nenhum cliente cadastrado...\n");
         fclose(arqClientes);
     }
     else
@@ -363,11 +363,11 @@ void CadastroC()
             scanf("%d %d %d", &cli.nascimento.dia, &cli.nascimento.mes, &cli.nascimento.ano);
 
             fflush (stdin);
-            printf("                    Endereco: ");
+            printf("                    Endereço: ");
             gets(cli.rua);
 
             fflush (stdin);
-            printf("                    Numero: ");
+            printf("                    Número: ");
             scanf("%d",&cli.num);
 
             fflush (stdin);
@@ -379,7 +379,7 @@ void CadastroC()
             gets(cli.cidade);
 
             fflush (stdin);
-            printf("                    UF: ");
+            printf("                    Estado(UF): ");
             gets(cli.uf);
 
             fflush (stdin);
@@ -391,7 +391,7 @@ void CadastroC()
             gets(cli.tel);
 
             fflush (stdin);
-            printf("                    Endereco de E-mail: ");
+            printf("                    Endereço de E-mail: ");
             gets(cli.email);
 
             fwrite(&cli, sizeof(CLIENTE), 1, arqClientes);
@@ -409,11 +409,11 @@ void CadastroP()
     PRODUTO prods;
     FILE *arq;
     //Escolhendo diretório onde arquivo será salvo e concedendo a permissão de escrita e leitura
-    arq = fopen ("D:\\Trabalho\\Gustavo\\Produtos.txt","ab");
+    arq = fopen ("Produtos.txt","ab");
     //Caso o arquivo ainda não exista execute isso, e então o arquivo será criado
     if (arq == NULL)
     {
-        puts("Nenhum produto cadastrado\n");
+        puts("Nenhum produto cadastrado...\n");
         fclose(arq);
     }
     else
@@ -431,7 +431,7 @@ void CadastroP()
             printf("                    Valor do produto: ");
             fflush (stdin);
             gets(&prods.preco);
-            printf("                    Codigo do produto: ");
+            printf("                    ID do produto: ");
             fflush (stdin);
             gets(&prods.id);
 
@@ -449,15 +449,15 @@ void listarUsuarios(){
     FILE* arqUsuario;
     USUARIO userArq;
 
-    arqUsuario = fopen("D:\\Trabalho\\Gustavo\\Usuarios.txt","rb");
+    arqUsuario = fopen("Usuarios.txt","rb");
 
     if(arqUsuario == NULL){
-        puts("Nenhum usuario cadastrado...\n");
+        puts("Nenhum usuário cadastrado...\n");
         system("pause");
         fclose(arqUsuario);
     }
     else {
-        puts("--------------------USUARIOS CADASTRADOS--------------------\n\n");
+        puts("--------------------USUÁRIOS CADASTRADOS--------------------\n\n");
         while(fread(&userArq, sizeof(USUARIO), 1, arqUsuario)==1){
                 printf("Nome: %s\n", userArq.nome);
                 printf("Sobrenome: %s\n", userArq.sobreNome);
@@ -479,12 +479,12 @@ void procuraUsuarioNome(){
 
     char userName[30];
 
-    arqUsuario = fopen("D:\\Trabalho\\Gustavo\\Usuarios.txt","rb");
+    arqUsuario = fopen("Usuarios.txt","rb");
 
 
 
     if(arqUsuario == NULL){
-        puts("Nenhum usuario cadastrado...\n");
+        puts("Nenhum usuário cadastrado...\n");
         fclose(arqUsuario);
     } else {
         fflush(stdin);
@@ -515,12 +515,12 @@ void procuraUsuarioSobrenome(){
 
     char userName[30];
 
-    arqUsuario = fopen("D:\\Trabalho\\Gustavo\\Usuarios.txt","rb");
+    arqUsuario = fopen("Usuarios.txt","rb");
 
 
 
     if(arqUsuario == NULL){
-        puts("Nenhum usuario cadastrado...\n");
+        puts("Nenhum usuário cadastrado...\n");
         system("pause");
         fclose(arqUsuario);
     } else {
@@ -552,12 +552,12 @@ void procuraUsuarioLogin(){
 
     char userName[30];
 
-    arqUsuario = fopen("D:\\Trabalho\\Gustavo\\Usuarios.txt","rb");
+    arqUsuario = fopen("Usuarios.txt","rb");
 
 
 
     if(arqUsuario == NULL){
-        puts("Nenhum usuario cadastrado...\n");
+        puts("Nenhum usuário cadastrado...\n");
         system("pause");
         fclose(arqUsuario);
     } else {
@@ -584,14 +584,14 @@ void procuraUsuarioLogin(){
 }
 
 void menuUsuarios(){
-    printf("-------------MENU REL. USUARIOS-------------\n\n");
-    printf("           1 <> Exibir usuarios cadastrados\n");
+    printf("-------------MENU REL. USUÁRIOS-------------\n\n");
+    printf("           1 <> Exibir usuários cadastrados\n");
     printf("           2 <> Procurar por nome\n");
     printf("           3 <> Procurar por sobrenome\n");
     printf("           4 <> Procurar por login\n");
-    printf("           5 <> Editar usuario\n");
+    printf("           5 <> Editar usuário\n");
     printf("           6 <> Voltar\n\n");
-    printf("Opcao: ");
+    printf("Opção: ");
     fflush(stdin);
     getch();
 }
@@ -643,14 +643,14 @@ do {
 
 void menuFuncionarios(){
     printf("-----------MENU REL. FUNCIONÁRIOS-----------\n\n");
-    printf("           1 <> Exibir funcionarios cadastrados\n");
+    printf("           1 <> Exibir funcionários cadastrados\n");
     printf("           2 <> Procurar por nome\n");
     printf("           3 <> Procurar por sobrenome\n");
-    printf("           4 <> Listar aniversariantes do mes\n");
-    printf("           5 <> Listar por data de admissao\n");
-    printf("           6 <> Editar funcionario\n");
+    printf("           4 <> Listar aniversariantes do mês\n");
+    printf("           5 <> Listar por data de admissão\n");
+    printf("           6 <> Editar funcionário\n");
     printf("           7 <> Voltar\n\n");
-    printf("Opcao: ");
+    printf("Opção: ");
     fflush(stdin);
     getch();
 }
@@ -711,10 +711,10 @@ void listarFuncionarios(){
     FILE* arqFuns;
     FUNCIONARIO funs;
 
-    arqFuns = fopen("D:\\Trabalho\\Gustavo\\Funcionarios.txt","rb");
+    arqFuns = fopen("Funcionarios.txt","rb");
 
     if(arqFuns == NULL){
-        puts("Nenhum funcionario cadastrado...\n");
+        puts("Nenhum funcionário cadastrado...\n");
         system("pause");
         fclose(arqFuns);
     }
@@ -751,12 +751,12 @@ void procuraFuncionarioNome(){
 
     char funsNome[30];
 
-    arqFuns = fopen("D:\\Trabalho\\Gustavo\\Funcionarios.txt","rb");
+    arqFuns = fopen("Funcionarios.txt","rb");
 
 
 
     if(arqFuns == NULL){
-        puts("Nenhum funcionario cadastrado...\n");
+        puts("Nenhum funcionário cadastrado...\n");
         system("pause");
         fclose(arqFuns);
     } else {
@@ -764,7 +764,7 @@ void procuraFuncionarioNome(){
         fflush(stdin);
         printf("\nDigite o nome a pesquisar: \n\n");
         gets(funsNome);
-        puts("-----------FUNCIONÁRIOS CADASTRADOS-----------\n\n");
+        puts("-------------------------------------\n\n");
 
         while(fread(&funs, sizeof(FUNCIONARIO), 1, arqFuns)==1 ){
             if(strcmp(funsNome, funs.nome)==0){
@@ -799,12 +799,12 @@ void procuraFuncionarioSobrenome(){
 
     char funsNome[30];
 
-    arqFuns = fopen("D:\\Trabalho\\Gustavo\\Funcionarios.txt","rb");
+    arqFuns = fopen("Funcionarios.txt","rb");
 
 
 
     if(arqFuns == NULL){
-        puts("Nenhum funcionario cadastrado...\n");
+        puts("Nenhum funcionário cadastrado...\n");
         system("pause");
         fclose(arqFuns);
     } else {
@@ -844,13 +844,13 @@ void procuraAniversariantes(){
     FILE* arqFuns;
     FUNCIONARIO funs;
 
-    arqFuns = fopen("D:\\Trabalho\\Gustavo\\Funcionarios.txt","rb");
+    arqFuns = fopen("Funcionarios.txt","rb");
 
     int mes=0;
 
 
     if(arqFuns == NULL){
-        puts("Nenhum funcionario cadastrado...\n");
+        puts("Nenhum funcionário cadastrado...\n");
         system("pause");
         fclose(arqFuns);
     } else {
@@ -890,13 +890,13 @@ void listarAdmissao(){
     FILE* arqFuns;
     FUNCIONARIO funs;
 
-    arqFuns = fopen("D:\\Trabalho\\Gustavo\\Funcionarios.txt","rb");
+    arqFuns = fopen("Funcionarios.txt","rb");
 
     int mes=0;
 
 
     if(arqFuns == NULL){
-        puts("Nenhum funcionario cadastrado...\n");
+        puts("Nenhum funcionário cadastrado...\n");
         system("pause");
         fclose(arqFuns);
     } else {
@@ -940,11 +940,11 @@ void menuClientes(){
     printf("           1 <> Exibir clientes cadastrados\n");
     printf("           2 <> Procurar por nome\n");
     printf("           3 <> Procurar por CPF\n");
-    printf("           4 <> Listar aniversariantes do mes\n");
+    printf("           4 <> Listar aniversáriantes do mês\n");
     printf("           5 <> Listar por cidade\n");
     printf("           6 <> Editar cliente\n");
     printf("           7 <> Voltar\n\n");
-    printf("Opcao: ");
+    printf("Opção: ");
     fflush(stdin);
     getch();
 }
@@ -1005,7 +1005,7 @@ void listarClientes(){
     FILE* arqCli;
     CLIENTE clis;
 
-    arqCli = fopen("D:\\Trabalho\\Gustavo\\Clientes.txt","rb");
+    arqCli = fopen("Clientes.txt","rb");
 
     if(arqCli == NULL){
         puts("Nenhum cliente cadastrado...\n");
@@ -1042,7 +1042,7 @@ void procuraClienteNome(){
 
     char cliNome[50];
 
-    arqCli = fopen("D:\\Trabalho\\Gustavo\\Clientes.txt","rb");
+    arqCli = fopen("Clientes.txt","rb");
 
 
 
@@ -1086,7 +1086,7 @@ void procuraClienteCPF(){
 
     char clisCPF[30];
 
-    arqCli = fopen("D:\\Trabalho\\Gustavo\\Clientes.txt","rb");
+    arqCli = fopen("Clientes.txt","rb");
 
     if(arqCli == NULL){
         puts("Nenhum cliente cadastrado...\n");
@@ -1126,7 +1126,7 @@ void procuraClientesAniversariantes(){
     FILE* arqCli;
     CLIENTE clis;
 
-    arqCli = fopen("D:\\Trabalho\\Gustavo\\Clientes.txt","rb");
+    arqCli = fopen("Clientes.txt","rb");
 
     int cliMes=0;
 
@@ -1169,7 +1169,7 @@ void listarPorCidade(){
     FILE* arqCli;
     CLIENTE clis;
 
-    arqCli = fopen("D:\\Trabalho\\Gustavo\\Clientes.txt","rb");
+    arqCli = fopen("Clientes.txt","rb");
 
     char cliCidade[30];
 
@@ -1219,7 +1219,7 @@ void menuProdutos(){
     printf("           4 <> Procurar por ID\n");
     printf("           5 <> Editar produto\n");
     printf("           6 <> Voltar\n\n");
-    printf("Opcao: ");
+    printf("Opção: ");
     fflush(stdin);
     getch();
 }
@@ -1272,7 +1272,7 @@ void listarProdutos(){
     FILE* arqProd;
     PRODUTO prods;
 
-    arqProd = fopen("D:\\Trabalho\\Gustavo\\Produtos.txt","rb");
+    arqProd = fopen("Produtos.txt","rb");
 
     if(arqProd == NULL){
         puts("Nenhum produto cadastrado...\n");
@@ -1285,7 +1285,7 @@ void listarProdutos(){
                 printf("Tipo: %s\n", prods.tipo);
                 printf("Nome: %s\n", prods.nome);
                 printf("Preço: R$%f\n", prods.preco);
-                printf("Código: %d\n", prods.id);
+                printf("ID: %d\n", prods.id);
                 printf("-------------------------------------\n\n", prods.nome);
         }
         puts("Fim da lista!");
@@ -1301,7 +1301,7 @@ void listarProdutosTipo(){
 
     char prodTipo[50];
 
-    arqProd = fopen("D:\\Trabalho\\Gustavo\\Produtos.txt","rb");
+    arqProd = fopen("Produtos.txt","rb");
 
     if(arqProd == NULL){
         puts("Nenhum produto cadastrado...\n");
@@ -1318,7 +1318,7 @@ void listarProdutosTipo(){
                 printf("Tipo: %s\n", prods.tipo);
                 printf("Nome: %s\n", prods.nome);
                 printf("Preço: R$%f\n", prods.preco);
-                printf("Código: %d\n", prods.id);
+                printf("ID: %d\n", prods.id);
                 printf("-------------------------------------\n\n", prods.nome);
                }
             }
@@ -1335,7 +1335,7 @@ void procuraProdutoNome(){
 
     char prodNome[50];
 
-    arqProd = fopen("D:\\Trabalho\\Gustavo\\Produtos.txt","rb");
+    arqProd = fopen("Produtos.txt","rb");
 
 
     if(arqProd == NULL){
@@ -1353,7 +1353,7 @@ void procuraProdutoNome(){
                 printf("Tipo: %s\n", prods.tipo);
                 printf("Nome: %s\n", prods.nome);
                 printf("Preço: R$%f\n", prods.preco);
-                printf("Código: %d\n", prods.id);
+                printf("ID: %d\n", prods.id);
                 printf("-------------------------------------\n\n", prods.nome);
                }
             }
@@ -1368,7 +1368,7 @@ void procuraProdutoPorId(){
     FILE* arqProd;
     PRODUTO prods;
 
-    arqProd = fopen("D:\\Trabalho\\Gustavo\\Produtos.txt","rb");
+    arqProd = fopen("Produtos.txt","rb");
 
     int prodId=0;
 
@@ -1388,7 +1388,7 @@ void procuraProdutoPorId(){
                 printf("Tipo: %s\n", prods.tipo);
                 printf("Nome: %s\n", prods.nome);
                 printf("Preço: R$%f\n", prods.preco);
-                printf("Código: %d\n", prods.id);
+                printf("ID: %d\n", prods.id);
                 printf("-------------------------------------\n\n", prods.nome);
                }
             }
@@ -1404,27 +1404,27 @@ void procuraProdutoPorId(){
 
 void AlterarUsuario()
 {
-    FILE *arquivo = fopen("D:\\Trabalho\\Gustavo\\Usuarios.txt","rb+");
+    FILE *arquivo = fopen("Usuarios.txt","rb+");
     USUARIO user;
     int i = 1, id;
 
     if(arquivo)
     {
-        printf("--------------------USUARIOS CADASTRADOS--------------------\n\n");
+        printf("--------------------USUÁRIOS CADASTRADOS--------------------\n\n");
         while(fread(&user, sizeof(USUARIO), 1, arquivo))
         {
-            printf("(%i)\n\tNome: %s\n\tSobrenome: %s\n\tUsuario: %s\n\tEmail: %s\n\tSenha: %s\n\n", i, user.nome, user.sobreNome, user.usuario, user.email, user.senha);
+            printf("(%i)\n\tNome: %s\n\tSobrenome: %s\n\tUsuário: %s\n\tEmail: %s\n\tSenha: %s\n\n", i, user.nome, user.sobreNome, user.usuario, user.email, user.senha);
             i++;
         }
         printf("\n------------------------------------------------------------\n\n");
-        printf("Informe o numero do usuario que deseja alterar: ");
+        printf("Informe o número do usuário que deseja alterar: ");
         scanf("%i",&id);
         fflush(stdin);
         id--;
         if(id >= 0 && id < i - 1)
         {
             system("cls");
-            puts("--------------------EDICAO DE USUARIO--------------------\n\n");
+            puts("--------------------EDIÇÃO DE USUÁRIO--------------------\n\n");
             printf("                  Novo* Nome: ");
             gets(user.nome);
             printf("                  Novo* Sobrenome: ");
@@ -1439,11 +1439,12 @@ void AlterarUsuario()
             fwrite(&user, sizeof(USUARIO), 1, arquivo);
         }
         fclose(arquivo);
+        getch();
     }
     else
     {
         system("cls");
-        puts("Nenhum usuario cadastrado...\n");
+        puts("Nenhum usuário cadastrado...\n");
         system("pause");
     }
 }
@@ -1452,7 +1453,7 @@ void AlterarUsuario()
 
 void AlterarFuncionario()
 {
-    FILE *arquivo = fopen("D:\\Trabalho\\Gustavo\\Funcionarios.txt","rb+");
+    FILE *arquivo = fopen("Funcionarios.txt","rb+");
     FUNCIONARIO funs;
     int i = 1, id;
 
@@ -1461,7 +1462,22 @@ void AlterarFuncionario()
         printf("--------------------FUNCIONARIOS CADASTRADOS--------------------\n\n");
         while(fread(&funs, sizeof(FUNCIONARIO), 1, arquivo))
         {
-            printf("(%i)\n\tNome: %s\n\tSobrenome: %s\n\tData de nascimento: %d/%d/%d\n\tFiliacao: %s\n\tNacionalidade: %s\n\tNaturalidade: %s\n\tNumero de identificacao PIS/PASEP: %s\n\tCarteira de Trabalho e Previdencia Social (CTPS): %s\n\tEscolaridade: %s\n\tCPF: %s\n\tRG: %s\n\tTitulo de eleitor: %s\n\tData de admissao: %d/%d/%d\n\tCargo/Funcao: %s\n\tremuneracao: %d\n\n", i, funs.nome, funs.sobreNome, funs.nascimento.dia, funs.nascimento.mes, funs.nascimento.ano, funs.pis, funs.ctps, funs.escolaridade, funs.cpf, funs.rg, funs.eleitor, funs.admissao.dia, funs.admissao.mes, funs.admissao.ano);
+            printf("(%d)", i);
+            printf("\tNome: %s\n", funs.nome);
+            printf("\tSobrenome: %s\n", funs.sobreNome);
+            printf("\tData de nascimento: %d/%d/%d\n", funs.nascimento.dia, funs.nascimento.mes, funs.nascimento.ano);
+            printf("\tFiliação: %s\n", funs.filiacao);
+            printf("\tNacionalidade: %d\n", funs.nacionalidade);
+            printf("\tNaturalidade: ", funs.naturalidade);
+            printf("\tPIS: %s\n", funs.pis);
+            printf("\tCTPS: %s\n", funs.ctps);
+            printf("\tEscolaridade: %s\n", funs.escolaridade);
+            printf("\tCPF: %s\n", funs.cpf);
+            printf("\tRG: %d\n", funs.rg);
+            printf("\tTitulo de eleitor: %s\n", funs.eleitor);
+            printf("\tAdmissao: %d/%d/%d\n", funs.admissao.dia, funs.admissao.mes, funs.admissao.ano);
+            printf("\tCargo: %s\n", funs.cargo);
+            printf("\tRemuneração: R$%d\n", funs.remuneracao);
             i++;
         }
         printf("\n------------------------------------------------------------\n\n");
@@ -1507,6 +1523,7 @@ void AlterarFuncionario()
             fwrite(&funs, sizeof(FUNCIONARIO), 1, arquivo);
         }
         fclose(arquivo);
+        getch();
     }
     else
     {
@@ -1520,7 +1537,7 @@ void AlterarFuncionario()
 
 void AlterarCliente()
 {
-    FILE *arquivo = fopen("D:\\Trabalho\\Gustavo\\Clientes.txt","rb+");
+    FILE *arquivo = fopen("Clientes.txt","rb+");
     CLIENTE cli;
     int i = 1, id;
 
@@ -1529,27 +1546,27 @@ void AlterarCliente()
         printf("--------------------CLIENTES CADASTRADOS--------------------\n\n");
         while(fread(&cli, sizeof(CLIENTE), 1, arquivo))
         {
-            printf("(%i)\n\tNome completo: %s\n\tCPF: %s\n\tData de nascimento: %d/%d/%d\n\tEndereco: %s\n\tNumero: %d\n\tBairro: %s\n\tCidade: %s\n\tCEP: %s\n\tUF: %s\n\tTelefone: %s\n\tE-mail: %s\n\n", i, cli.nomeCompleto, cli.cpf, cli.nascimento.dia, cli.nascimento.mes, cli.nascimento.ano, cli.rua, cli.num, cli.bairro, cli.cidade, cli.cep, cli.uf, cli.tel, cli.email);
+            printf("(%i)\n\tNome completo: %s\n\tCPF: %s\n\tData de nascimento: %d/%d/%d\n\tEndereço: %s\n\tNúmero: %d\n\tBairro: %s\n\tCidade: %s\n\tCEP: %s\n\tUF: %s\n\tTelefone: %s\n\tE-mail: %s\n\n", i, cli.nomeCompleto, cli.cpf, cli.nascimento.dia, cli.nascimento.mes, cli.nascimento.ano, cli.rua, cli.num, cli.bairro, cli.cidade, cli.cep, cli.uf, cli.tel, cli.email);
             i++;
         }
         printf("\n------------------------------------------------------------\n\n");
-        printf("Informe o numero do cliente que deseja alterar: ");
+        printf("Informe o número do cliente que deseja alterar: ");
         scanf("%i",&id);
         fflush(stdin);
         id--;
         if(id >= 0 && id < i - 1)
         {
             system("cls");
-            puts("--------------------EDICAO DE CLIENTE--------------------\n\n");
+            puts("--------------------EDIÇÃO DE CLIENTE--------------------\n\n");
             printf("                  Novo* Nome completo: ");
             gets(cli.nomeCompleto);
             printf("                  Novo* CPF: ");
             gets(cli.cpf);
             printf("                  Nova* Data de nascimento: ");
             scanf("%d %d %d", &cli.nascimento.dia, &cli.nascimento.dia, &cli.nascimento.dia);
-            printf("                  Novo* Endereco: ");
+            printf("                  Novo* Endereço: ");
             gets(cli.rua);
-            printf("                  Nova* Numero: ");
+            printf("                  Nova* Número: ");
             scanf("%d",&cli.num);
             printf("                  Novo* Bairro: ");
             gets(cli.bairro);
@@ -1561,12 +1578,13 @@ void AlterarCliente()
             gets(cli.cep);
             printf("                  Novo* Telefone: ");
             gets(cli.tel);
-            printf("                  Novo* Endereco de E-mail: ");
+            printf("                  Novo* Endereço de E-mail: ");
             gets(cli.email);
             fseek(arquivo, id * sizeof(CLIENTE), SEEK_SET);
             fwrite(&cli, sizeof(CLIENTE), 1, arquivo);
         }
         fclose(arquivo);
+        getch();
     }
     else
     {
@@ -1580,7 +1598,7 @@ void AlterarCliente()
 
 void AlterarProduto()
 {
-    FILE *arquivo = fopen("D:\\Trabalho\\Gustavo\\Produtos.txt","rb+");
+    FILE *arquivo = fopen("Produtos.txt","rb+");
     PRODUTO prods;
     int i = 1, id;
 
@@ -1593,14 +1611,14 @@ void AlterarProduto()
             i++;
         }
         printf("\n------------------------------------------------------------\n\n");
-        printf("Informe o numero do produto que deseja alterar: ");
+        printf("Informe o número do produto que deseja alterar: ");
         scanf("%i",&id);
         fflush(stdin);
         id--;
         if(id >= 0 && id < i - 1)
         {
             system("cls");
-            puts("--------------------EDICAO DE PRODUTO--------------------\n\n");
+            puts("--------------------EDIÇÃO DE PRODUTO--------------------\n\n");
             printf("                  Novo* Tipo: ");
             gets(prods.tipo);
             printf("                  Novo* Nome: ");
@@ -1613,6 +1631,7 @@ void AlterarProduto()
             fwrite(&prods, sizeof(PRODUTO), 1, arquivo);
         }
         fclose(arquivo);
+        getch();
     }
     else
     {
@@ -1622,60 +1641,20 @@ void AlterarProduto()
     }
 }
 
-//A função de Login ainda não está definada corretamente
-
-/*
-int verificaUsuario(char login){
-    FILE* arqUsuario;
-    USUARIO user;
-
-
-    arqUsuario = fopen("Usuario.txt", "r");
-
-        while(fread(&user, sizeof(USUARIO), 1, arqUsuario)== 1 ){
-            if(strcmp(login, user.usuario)==0){
-                return 1;
-               }
-               else {
-                return 0;
-               }
-            }
-    fclose(arqUsuario);
-    getch();
-}
-
-
-
-int validaSenha(char senha){
-   FILE* arqUsuario;
-   USUARIO user;
-
-    arqUsuario = fopen("Usuario.txt", "r");
-        while(fread(&user, sizeof(USUARIO), 1, arqUsuario)== 1 ){
-            if(strcmp(senha, user.senha)==0){
-                return 1;
-               }
-               else {
-                return 0;
-               }
-            }
-    fclose(arqUsuario);
-    getch();
-}
-
+//FUNÇÃO QUE VERIFICA DADOS DE USUARIO E LIBERA O ACESSO AO SISTEMA SE O MESMO ESTIVER CADASTRADO
 
 void Login()
 {
     system("cls");
     char usu[50], senha[50];
-    int usuarioLogado = 0;
+    int usuarioLogado = 0, opc;
     USUARIO userArq;
 
     FILE *arq;
     arq = fopen("Usuarios.txt","rb");
 
     printf("--------------------TELA DE LOGIN--------------------\n\n");
-    printf("\n                  <> Usuario: ");
+    printf("\n                  <> Usuário: ");
     scanf("%s",&usu);
     printf("\n                  <> Senha: ");
     scanf("%s",&senha);
@@ -1690,39 +1669,43 @@ void Login()
         fflush(stdin);
         while(fread(&userArq, sizeof(USUARIO), 1, arq)==1 )
         {
-            if (strcmp(usu, userArq.usuario)==0)
+            if ((strcmp(usu, userArq.usuario)==0) && (strcmp(senha, userArq.senha)==0))
                 {
                     system("cls");
-                    printf("\n\n\n                      Ola %s \n\n\n\n\n",userArq.nome);
+                    printf("\n\n\n                      Olá %s \n\n\n\n\n",userArq.nome);
                     system("pause");
                     system("cls");
                     usuarioLogado = 1;
                 }
-                else{
-                        do{
-                        system("cls");
-                        printf("\n\n\nUsuario e/ou senha incorretos!\n\n\n\n\n");
-                        system("pause");
-                        system("cls");
-                        printf("--------------------TELA DE LOGIN--------------------\n\n");
-                        printf("\n                  <> Usuario: ");
-                        scanf("%s",&usu);
-                        printf("\n                  <> Senha: ");
-                        scanf("%s",&senha);
-
-                        if (strcmp(usu, userArq.usuario)==0)
+                else
+                {
+                    while(usuarioLogado != 1)
                         {
                             system("cls");
-                            printf("\n\n\n                      Ola %s \n\n\n\n\n",userArq.nome);
+                            printf("\n\n\nUsuário e/ou senha incorretos!\n\n\n\n\n");
                             system("pause");
                             system("cls");
-                            usuarioLogado = 1;}
-                    else{
-                        usuarioLogado = 0;
-                    }
-                    } while(usuarioLogado != 1);
-            }
+                            printf("--------------------TELA DE LOGIN--------------------\n\n");
+                            printf("\n                  <> Usuário: ");
+                            scanf("%s",&usu);
+                            printf("\n                  <> Senha: ");
+                            scanf("%s",&senha);
+
+                            if ((strcmp(usu, userArq.usuario)==0) && (strcmp(senha, userArq.senha)==0))
+                            {
+                                system("cls");
+                                printf("\n\n\n                      Olá %s \n\n\n\n\n",userArq.nome);
+                                system("pause");
+                                system("cls");
+                                usuarioLogado = 1;
+                            }
+                            else
+                            {
+                                usuarioLogado = 0;
+                            }
+                        }
+                }
         }
         fclose(arq);
     }
-}*/
+}
